@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!-- load properties file -->
+    <context:property-placeholder location="classpath:sport.properties"/>
+    
+    <!-- Define your beans here -->
+    <bean id="myFortuneService"
+    	class="com.tomcat.springdemo.RandomFortuneService">
+    </bean>
+    
+    <bean id="myCoach"
+    	class="com.tomcat.springdemo.TrackCoach">
+    	<constructor-arg ref="myFortuneService"/>
+    </bean>
+    
+    <bean id="myVolCoach"
+    	class="com.tomcat.springdemo.VoleyballCoach">
+    </bean>
+    
+    <bean id= "myLoggerConfig" class="com.tomcat.springdemo.MyLoggerConfig" init-method="initLogger">
+    	<property name="rootLoggerLevel" value="FINE"/>	
+    	<property name="printedLoggerLevel" value="FINE"/>
+    </bean>
+    
+    <bean id="myCricketCoach"
+    	class="com.tomcat.springdemo.CricketCoach">
+    	
+    	<!-- set up Service setter injection-->
+    	<property name="fortuneService" ref="myFortuneService"></property>
+    	
+    	<!-- set up fields setters injection-->
+    	<property name="emailAddress" value="${foo.email}"></property>
+    	<property name="team" value="${foo.team}"></property>
+    </bean>
+    
+</beans>
+
+
+
+
+
