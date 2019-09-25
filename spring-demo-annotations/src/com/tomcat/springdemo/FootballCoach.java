@@ -10,4 +10,10 @@ public class FootballCoach implements Coach {
 		return "Run fast!";
 	}
 
+	@Override
+	public String getDailyFortune() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
