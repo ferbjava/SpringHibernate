@@ -29,6 +29,11 @@
 	</bean>
 	<!-- Step 6: add support for reading prop from files -->
 	<util:properties id="countryOptions" location="classpath:../countries.properties"></util:properties>
+	
+	<!-- Load properties -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames" value="resources/messages"></property></bean>
 
 </beans>
 
