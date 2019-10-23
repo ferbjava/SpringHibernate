@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.tomcat.spring.mvc.validation.CourseCode;
+
 public class Customer {
 
 	private String firstName;
@@ -21,6 +23,9 @@ public class Customer {
 
 	@Pattern(regexp = "^[0-9]{2}-[0-9]{3}", message = "invalid pattern! Correct one is XX-XXX")
 	private String postalCode;
+	
+	@CourseCode(value = "LECH", message = "must start with LECH")
+	private String courseCode;
 
 	public Customer() {
 	}
@@ -55,6 +60,14 @@ public class Customer {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 
 }
