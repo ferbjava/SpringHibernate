@@ -10,7 +10,22 @@ public class MyLoggingAspect {
 
 	@Before("execution(public void addAccount())")
 	public void beforeAddAccountAdvice() {
-		System.out.println("\n====> Executeing @Before advice on addAccount()");
+		System.out.println("\n====> Executing @Before advice on addAccount()");
+	}
+
+	@Before("execution(public void com.ferb.spring.aop.dao.AccountDao.addAccount())")
+	public void beforeAddAccountAdviceOnClass() {
+		System.out.println("\n====> Executing @Before advice on AccountDao.addAccount()");
+	}
+
+	@Before("execution(public void add*())")
+	public void beforeAddWhateverMethodAdvice() {
+		System.out.println("\n====> Executing @Before advice on addWhatever() method");
+	}
+
+	@Before("execution(void add*())")
+	public void beforeAnyMethodTypeAdvice() {
+		System.out.println("\n====> Executing @Before advice on anyType method");
 	}
 	
 }
