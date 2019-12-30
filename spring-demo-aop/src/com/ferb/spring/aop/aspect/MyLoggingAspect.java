@@ -27,5 +27,10 @@ public class MyLoggingAspect {
 	public void beforeAnyMethodTypeAdvice() {
 		System.out.println("\n====> Executing @Before advice on anyType method");
 	}
+
+	@Before("execution(void addAccount(com.ferb.spring.aop.entity.Account))")
+	public void beforeAddAccountAdviceWithParam() {
+		System.out.println("\n====> Executing @Before advice on addAccount() with Account param");
+	}
 	
 }
