@@ -1,4 +1,4 @@
-package com.ferb.rest.demo01;
+package com.ferb.rest.demo01.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
