@@ -11,29 +11,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ferb.rest.demo01.entity.Student;
+import com.ferb.rest.demo01.utils.StudentNotFoundException;
 
 @RestController
 @RequestMapping("/api")
 public class StudentRestController {
-	
+
 	private List<Student> students;
-	
+
 	@PostConstruct
 	public void loadData() {
 		students = new ArrayList<>();
 		students.add(new Student("Jan", "Kowalski"));
 		students.add(new Student("Adam", "Nowak"));
 		students.add(new Student("Piotr", "Wiśniewski"));
-		
+
 	}
 
 	@GetMapping("/students")
 	public List<Student> getStudents() {
 		return students;
 	}
-	
+
 	@GetMapping("/students/{studentId}")
 	public Student getStudent(@PathVariable int studentId) {
+		if (studentId >= students.size() || studentId < 0) {
+			throw new StudentNotFoundException("Student id not forund: " + studentId);
+		}
 		return students.get(studentId);
 	}
 }
