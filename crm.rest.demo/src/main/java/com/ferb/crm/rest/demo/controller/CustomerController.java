@@ -3,6 +3,7 @@ package com.ferb.crm.rest.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,4 +49,18 @@ public class CustomerController {
 		customerService.saveCustomer(customer);
 		return customer;
 	}
+	
+	@DeleteMapping("/customer/{id}")
+	public String deleteCustomer(@PathVariable int id) {
+		
+		Customer tempCustomer = customerService.getCustomer(id);
+		
+		if(tempCustomer == null) {
+			throw new CustomerNotFoundException("Customer id not found - " + id);
+		}
+		
+		customerService.deleteCustomer(id);
+		return new String("Customer with id: " + id + " succesfully deleted");
+	}
+	
 }
